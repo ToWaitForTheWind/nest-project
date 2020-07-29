@@ -6,7 +6,7 @@ import { Users } from './users.entity'
 export class UsersService {
   constructor(
     @Inject('UsersRepositoryToken')
-    private readonly usersRepository: Repository<Users>,
+    private usersRepository: Repository<Users>,
   ) {}
 
   async findAll(): Promise<Users[]> {

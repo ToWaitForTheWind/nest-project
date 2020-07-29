@@ -4,10 +4,11 @@ import { Users } from './users.entity'
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   @Get()
-  findAll(): Promise<Users[]> {
-    return this.usersService.findAll()
+  async findAll(): Promise<Users[]> {
+    const users = await this.usersService.findAll()
+    return users
   }
 }
