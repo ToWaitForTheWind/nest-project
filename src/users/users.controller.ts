@@ -8,6 +8,7 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<Users[]> {
+    debugger
     const users = await this.usersService.findAll()
     return users
   }
