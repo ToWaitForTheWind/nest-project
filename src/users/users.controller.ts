@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Param } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { Users } from './users.entity'
 
@@ -8,8 +8,14 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<Users[]> {
-    debugger
     const users = await this.usersService.findAll()
     return users
+  }
+  @Get(':userId')
+  async getUserById(
+    @Param('userId') userId: string | number,
+  ): Promise<Users[]> {
+    const user = await this.usersService.getUserById(userId)
+    return user
   }
 }
