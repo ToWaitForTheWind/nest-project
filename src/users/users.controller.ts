@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Query, Post, Body } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { Users } from './users.entity'
 
@@ -6,16 +6,20 @@ import { Users } from './users.entity'
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Get()
-  async findAll(): Promise<Users[]> {
-    const users = await this.usersService.findAll()
-    return users
-  }
-  @Get(':userId')
+  @Get('/getList')
   async getUserById(
-    @Param('userId') userId: string | number,
+    @Query('userId') userId: string | number,
   ): Promise<Users[]> {
-    const user = await this.usersService.getUserById(userId)
+    let user: any
+    if (!userId) user = await this.usersService.findAll()
+    else user = await this.usersService.getUserById(userId)
+    return user
+  }
+
+  @Post('/saveUser')
+  async saveNewUser(@Body() userInfo: Users): Promise<any> {
+    console.log(userInfo)
+    const user = await this.usersService.saveNewUser(userInfo)
     return user
   }
 }

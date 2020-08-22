@@ -15,11 +15,16 @@ export class UsersService {
 
   async getUserById(userId: string | number): Promise<any> {
     const id = Number(userId)
-    const users = await this.usersRepository.find()
-    const user = users.find(user => user.id === id)
+    const user = await this.usersRepository.findOne({ id })
     if (!user) {
       throw new HttpException('User does not exist', 404)
     }
     return user
+  }
+
+  async saveNewUser(userInfo: Users): Promise<any> {
+    delete userInfo.id
+    const res = await this.usersRepository.save(userInfo)
+    return res
   }
 }
