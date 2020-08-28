@@ -45,6 +45,15 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# quick create controller
+nest g controller cats
+
+# quick create service
+nest g service cats
+
+# quick create module
+nest g module cats
 ```
 
 ## Test
@@ -58,15 +67,6 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-
-# quick create controller
-nest g controller cats
-
-# quick create service
-nest g service cats
-
-# quick create module
-nest g module cats
 ```
 
 ## Support

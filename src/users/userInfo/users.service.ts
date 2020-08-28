@@ -1,6 +1,6 @@
 import { Injectable, Inject, HttpException } from '@nestjs/common'
 import { Repository } from 'typeorm'
-import { Users } from './users.entity'
+import { Users } from '../users.entity'
 
 @Injectable()
 export class UsersService {
